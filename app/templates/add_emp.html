@@ -1,0 +1,53 @@
+{% extends 'base_main.html'%}
+
+{% block head_content %} 
+  
+{% endblock %}
+  
+
+{% block main_content %}
+  <h1>{{ page_title }}</h1>
+
+  
+  <section>
+    <form  class="form" method="post" novalidate>
+      {{ form.hidden_tag() }}
+
+      <div class="form_group">
+        {{ form.fname.label(class="form_label") }}
+        {{ form.fname(size=20, class="form_input", autocomplete="off", autofocus=true,) }}
+        {% for error in form.fname.errors %}
+          <span class="form_error">[{{ error }}]</span>
+        {% endfor %}
+      </div> 
+      
+      <div class="form_group">
+        {{ form.lname.label(class="form_label") }}
+        {{ form.lname(size=20, class="form_input", autocomplete="off",) }}
+        {% for error in form.lname.errors %}
+          <span class="form_error">[{{ error }}]</span>
+        {% endfor %}
+      </div>  
+
+      <div class="form_group">
+        {{ form.dept.label(class="form_label") }}
+        {{ form.dept(size=2, class="form_input", autocomplete="off",) }}
+        {% for error in form.dept.errors %}
+          <span class="form_error">[{{ error }}]</span>
+        {% endfor %}
+      </div>  
+
+      <div class="form_group">
+        {{ form.ext.label(class="form_label") }}
+        {{ form.ext(size=4, class="form_input", autocomplete="off",) }}
+        {% for error in form.ext.errors %}
+          <span class="form_error">[{{ error }}]</span>
+        {% endfor %}
+      </div>    
+      <div class="form_submit">
+        {{ form.submit(class="form_submit-button") }} 
+      </div>
+    </form>
+  </section>
+
+{% endblock %}

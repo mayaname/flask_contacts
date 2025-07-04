@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/wolftrack.ico') }}">
+
+  {% block head_content %} {% endblock %}
+
+  {% if head_title %}
+    <title>{{ head_title }} - App</title>
+  {% else %}
+    <title>Flask App</title>
+  {% endif %}
+
+</head>
+<body>
+  <!-- Header section -->
+  {% include '_header.html' %}
+  <div>
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+      <div class="flash {{ category }}" id="flash-message">
+          {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+  
+    <!-- Content section -->
+  <main class="main">
+    {% block main_content %} {% endblock %}
+    
+     <!-- Footer section -->
+    {% include '_footer.html' %}
+  </main>
+</body>
+</html>

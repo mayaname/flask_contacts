@@ -1,0 +1,62 @@
+{% extends 'base_main.html'%}
+
+{% block head_content %} 
+  
+{% endblock %}
+  
+
+{% block main_content %}
+  <h1>{{ page_title }}</h1>
+
+  
+  <section class="section_table">
+    {% if emps %}
+      <table>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Department</th>
+            <th>Extension</th>
+            <th>Email</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for emp in emps %}
+            <tr>
+              <td>{{ emp.fname }}</td>
+              <td>
+                 <a href="{{ url_for('pages.update_emp', emp_id=emp.id) }}">
+                  {{ emp.lname }}
+                </a>
+              </td>
+              <td>{{ emp.dept }}</td>
+              <td>{{ emp.ext }}</td>
+              <td>{{ emp.email }}</td>
+              <td>
+                <a href="{{ url_for('pages.delete_emp', emp_id=emp.id) }}">
+                  x
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        {% if current_page > 1 %}
+          <a href="{{ url_for('pages.index', page=current_page - 1) }}" class="button">Previous</a>
+        {% endif %}
+        <span>Page {{ current_page }} of {{ total_pages }}</span>
+        {% if current_page < total_pages %}
+          <a href="{{ url_for('pages.index', page=current_page + 1) }}" class="button">Next</a>
+        {% endif %}
+      </div>
+
+    {% else %}
+      <p>No employee data available.</p>
+    {% endif %}
+  </section>
+
+{% endblock %}

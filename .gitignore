@@ -1,0 +1,58 @@
+
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+.flaskenv
+
+# IDE-specific files
+.idea/
+.vscode/
+cspell.json
+
+# Images
+*.ico
+*.jpg
+*.png
+*.webp
+
+
+# Flask specific
+instance/
+logs/
+migrations/
+__pycache__/
+*.log
+
+# C extensions
+*.so
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# SQLite 3 Databases
+*.db
+*.db3
+*.sqlite
+
+# Other
+tools/
