@@ -10,7 +10,7 @@ Revisions:
 
 """
 
-import responses 
+
 from bs4 import BeautifulSoup
 from app.models import Employee
 

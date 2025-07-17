@@ -11,7 +11,8 @@ Revisions:
 """
 
 
-from flask import (Blueprint,  
+from flask import (abort, 
+                   Blueprint,  
                    flash, 
                    render_template, 
                    redirect, 
@@ -23,6 +24,12 @@ from app.models import Employee
 
 
 pages = Blueprint('pages', __name__)
+
+def get_or_404(model, id):
+    record = db.session.get(model, id)
+    if record is None:
+        abort(404)
+    return record
 
 @pages.route('/')
 @pages.route('/index/')
@@ -81,18 +88,15 @@ def add_emp():
                     page_title=page_title,
                     form=form)
 
-@pages.route('/delete_emp/<int:emp_id>/', methods=['GET', 'POST'])
+@pages.route('/delete_emp/<int:emp_id>/', methods=['POST'])
 def delete_emp(emp_id):
-
     try:
-        emp = Employee.query.get_or_404(emp_id)
+        emp = get_or_404(Employee, emp_id)
 
         if emp:
             db.session.delete(emp)
             db.session.commit()
-            flash(f'{emp.fname} {emp.lname} deleted from database', 'success')
-        else:
-            flash(f"Employee {emp.fname} {emp.lname} not found.", category="error")         
+            flash(f'{emp.fname} {emp.lname} deleted from database', 'success')   
     except Exception as e:
             db.session.rollback()
             flash(f'Database error: \n{e}', 'error')
@@ -104,8 +108,8 @@ def delete_emp(emp_id):
 def update_emp(emp_id):
     head_title = 'Update'
     page_title = 'Update Employee'
-    
-    emp = Employee.query.get_or_404(emp_id)
+
+    emp = get_or_404(Employee, emp_id)
 
     form = UpdateEmployeeForm(obj=emp)
 
