@@ -4,7 +4,6 @@ Author: Maya Name
 Creation Date: 07/15/2025
 Revision Date: 
 Description: Configuration for pytest in Flask application
-https://www.youtube.com/watch?v=RLKW7ZMJOf4
 
 Revisions:
 

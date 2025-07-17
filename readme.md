@@ -19,3 +19,11 @@ This is a bare-bones Flask Employee Directory CRUD application that uses SQLite3
 ### Using Sample Data
 
 You can use manage.db to create and populate the database with sample employee contact data from the employees.cvs file. 
+
+### Unit Testing
+
+I updated the app to add unit testing using pytest and BeautifulSoup. I did not find a lot of info on unit testing Flask app, so here are the references I used:
+
+- [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- [pytest](https://docs.pytest.org/en/stable/)
+- [Getting Started With Testing in Flask](https://www.youtube.com/watch?v=RLKW7ZMJOf4)
